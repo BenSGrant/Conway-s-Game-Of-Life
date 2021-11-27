@@ -14,7 +14,6 @@
 #include <random>
 #include <Windows.h>
 #include <fstream>
-#include <filesystem>
 
 const int boardX = 48;
 const int boardY = 48;
@@ -278,20 +277,25 @@ void updateGame(int generation) {
 }
 
 int main() {
-	std::cout << "Enter the 1 in n chance for a cell to be generated in the first generation: ";
-	int num;
-	std::cin >> num;
-	generateStartingCells(num);
 
-	showCursor(false);
-	int generation = 1;
-	std::cout << "Generation: " << generation << "\t";
-	countTotalAliveCells();
-	printBoard();
-	Sleep(2000);
-	while (!GetAsyncKeyState(VK_ESCAPE)) {
-		updateGame(generation);
-		generation++;
+	std::cout << "\n----==== CONWAY'S GAME OF LIFE (ASCII VERSION) ====----\n\n\t\t- Concept And Design: John Conway (1937-2020)\n\n\t\t- This implementation in C++ was done by GaryTheBlobfish on the 27th of November 2021\n\t\t  GaryTheBlobfish - https://garytheblobfish.github.io \n" << std::endl;
+
+	while (true) {
+		std::cout << "Enter the 1 in n chance for a cell to be generated in the first generation (enter anything that's not a number to exit): ";
+		int num;
+		std::cin >> num;
+		generateStartingCells(num);
+
+		showCursor(false);
+		int generation = 1;
+		std::cout << "Generation: " << generation << "\t";
+		countTotalAliveCells();
+		printBoard();
+		Sleep(2000);
+		while (!GetAsyncKeyState(VK_ESCAPE)) {
+			updateGame(generation);
+			generation++;
+		}
 	}
 	return 0;
 }
