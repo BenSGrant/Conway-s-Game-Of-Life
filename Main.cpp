@@ -126,7 +126,7 @@ int countNeighbours(int y, int x, char board[boardY][boardX]) {
 	int num = 0;
 
 	// EFFICIENT METHOD, NOT MINE
-	/*for (int i = -1; i < 2; i++) {
+	for (int i = -1; i < 2; i++) {
 		for (int j = -1; j < 2; j++) {
 
 			int row = (y + i + boardY) % boardY;
@@ -139,10 +139,10 @@ int countNeighbours(int y, int x, char board[boardY][boardX]) {
 	}
 	if (board[y][x] == aliveCell) {
 		num--;
-	}*/
+	}
 
 	// MY METHOD, LONG AND DRAWN OUT
-	
+	/*
 	if (!(y == 0 && x == 0) && (y < (boardY-1) && x < (boardY-1))) { // centre of board
 		if (board[y - 1][x - 1] == aliveCell) { num++; }
 		if (board[y - 1][x] == aliveCell) { num++; }
@@ -208,6 +208,7 @@ int countNeighbours(int y, int x, char board[boardY][boardX]) {
 		if (board[y - 1][x + 1] == aliveCell) { num++; }
 		if (board[y][x + 1] == aliveCell) { num++; }
 	}
+	*/
 	return num;
 }
 
