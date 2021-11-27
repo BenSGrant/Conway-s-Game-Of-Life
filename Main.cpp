@@ -232,8 +232,8 @@ void processDeadCell(int y, int x, char board[boardY][boardX])
 void newGeneration(char board[boardY][boardX]) {
 	for (int y = 0; y < boardY; y++) {
 		for (int x = 0; x < boardX; x++) {
-			if (newBoard[y][x] == deadCell) { processDeadCell(y, x, board); }
-			if (newBoard[y][x] == aliveCell) { processAliveCell(y, x, board); }
+			processAliveCell(y, x, board);
+			processDeadCell(y, x, board);
 		}
 	}
 }
@@ -253,7 +253,7 @@ void countTotalAliveCells() {
 void printBoard() {
 	for (int y = 0; y < boardY; y++) {
 		for (int x = 0; x < boardX; x++) {
-			std::cout << std::setw(2) << newBoard[y][x];
+			std::cout << newBoard[y][x] << " ";
 		}
 		std::cout << std::endl;
 	}
