@@ -137,7 +137,7 @@ int countNeighbours(int y, int x, char board[boardY][boardX]) {
 			} // this counts cell in question, so ... see if statement outside of for loop
 		}
 	}
-	if (board[y][x] == aliveCell) {
+	if (board[y][x] == aliveCell && num > 0) {
 		num--;
 	}
 
