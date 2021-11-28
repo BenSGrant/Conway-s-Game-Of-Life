@@ -10,66 +10,66 @@
 */
 
 #include <iostream>
-#include <iomanip>
+#include <stdio.h>
 #include <random>
 #include <Windows.h>
 #include <fstream>
 
-const int boardX = 48;
+const int boardX = 72;
 const int boardY = 48;
 
-const char aliveCell = '#';
+const char aliveCell = '@';
 const char deadCell = ' ';
 
 char newBoard[boardY][boardX] = {
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
-	"                                 ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
+	"                                                                       ",
 };							          
 
 char oldBoard[boardY][boardX] = {};
@@ -237,24 +237,14 @@ void newGeneration(char board[boardY][boardX]) {
 	}
 }
 
-void countTotalAliveCells() {
-	int num = 0;
-	for (int y = 0; y < boardY; y++) {
-		for (int x = 0; x < boardX; x++) {
-			if (newBoard[y][x] == aliveCell) {
-				num++;
-			}
-		}
-	}
-	std::cout << "Total Alive Cells: " << num << std::endl;
-}
-
 void printBoard() {
 	for (int y = 0; y < boardY; y++) {
-		for (int x = 0; x < boardX; x++) {
-			std::cout << newBoard[y][x] << " ";
+		for (int x = 0; x < boardX; x+=4) {
+			std::cout << newBoard[y][x] << " " << newBoard[y][x + 1] << " " << newBoard[y][x + 2] << " " << newBoard[y][x + 3] << " ";
+			//printf(newBoard[y][x] + " ");
 		}
 		std::cout << std::endl;
+		//printf("\n");
 	}
 }
 
@@ -270,9 +260,14 @@ void updateGame(int generation) {
 	updateOldBoard();
 	showCursor(false);
 	system("cls");
-	std::cout << "Generation: " << generation << "\t";
-	countTotalAliveCells();
+	std::cout << "Generation: " << generation << "\n";
+	double before = clock();
 	printBoard();
+	double after = clock();
+	double delta = after - before;
+	if (delta < 67) { // if it took less than 67ms to print the board...
+		Sleep(67 - delta); // then sleep the amount of time that it took to print the board from 67ms
+	}
 	newGeneration(oldBoard);
 }
 
@@ -288,8 +283,7 @@ int main() {
 
 		showCursor(false);
 		int generation = 1;
-		std::cout << "Generation: " << generation << "\t";
-		countTotalAliveCells();
+		std::cout << "Generation: " << generation << "\n";
 		printBoard();
 		Sleep(2000);
 		while (!GetAsyncKeyState(VK_ESCAPE)) {
