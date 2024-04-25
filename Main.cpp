@@ -273,7 +273,7 @@ void updateGame(int generation) {
 
 int main() {
 
-	std::cout << "\n----==== CONWAY'S GAME OF LIFE (ASCII VERSION) ====----\n\n\t\t- Concept And Design: John Conway (1937-2020)\n\n\t\t- This implementation in C++ was done by GaryTheBlobfish on the 27th of November 2021\n\t\t  GaryTheBlobfish - https://garytheblobfish.github.io \n" << std::endl;
+	std::cout << "\n----==== CONWAY'S GAME OF LIFE (ASCII VERSION) ====----\n\n\t\t- Concept And Design: John Conway (1937-2020)\n\n\t\t- This implementation in C++ was done by Ben Grant on the 27th of November 2021\n\t\t  Ben Grant - https://bensgrant.github.io \n" << std::endl;
 
 	while (true) {
 		std::cout << "Enter the 1 in n chance for a cell to be generated in the first generation (enter anything that's not a number to exit): ";
