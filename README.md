@@ -6,8 +6,8 @@
   game have to be done simultaneously and thus needing
   2 boards, an old and a new which get replaced every
   frame/generation - I was just using one board.
-  
-  #NOTES
+
+### NOTES
   
   - When running the program, make sure to run it in 
     fullscreen mode (alt+enter for cmd).
